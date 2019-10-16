@@ -1,0 +1,85 @@
+<!-- -->
+<ion-header>
+
+  <ion-navbar  color="primary">
+    <ion-title>
+      <span ion-text>{{ cheff.name }}</span>
+    </ion-title>
+  </ion-navbar>
+
+</ion-header> 
+
+   
+<ion-content class="common-bg">
+  <!--slides-->
+  <ion-slides class="to-top" pager>
+    <ion-slide >
+      <img src={{cheff.img}} alt="">
+    </ion-slide>
+  </ion-slides>
+
+  <!--services-->
+  <ion-grid class="border-bottom dark-bg">
+    <ion-row>
+      <ion-col text-center>
+        <div class="text-sm">
+          <div>
+            <ion-icon name="list-box" margin-left class="text-white" *ngIf="trip.electric_voucher"></ion-icon>
+            <span ion-text color="light" *ngIf="trip.electric_voucher">{{cheff.mail}}</span>
+          </div>
+        </div> 
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <!--high light-->
+  <div class="border-bottom" padding>
+    <span ion-text color="dark" class="bold">PROFILE</span>
+    <ul class="highlight">
+      <li >
+        <ion-icon name="checkmark" class="text-green"></ion-icon>
+        <span ion-text color="primary">{{ cheff.profile }}</span>
+      </li>
+    </ul>
+  </div>
+
+  <div class="booking-form card round" margin>
+    <div class="border-bottom" padding>
+      <h5>Recipes</h5>
+     
+      <ion-item-divider>
+            
+        </ion-item-divider>
+  
+      <ion-grid class="filters" no-padding margin-top>
+        <ion-row *ngFor = "let rec of recipesCheff">
+          <ion-col class="adult" width-70>
+            <span ion-text color="primary"><strong>{{ rec.price | currency:'R':true }}</strong> {{rec.content}}</span>
+          </ion-col>
+          <ion-col  width-10 text-center>
+            <ion-icon *ngIf = "rec.isAdded" name="remove-circle" class="text-2x" tappable (click)="removeFromBasket(rec.key)" 
+                      color="secondary"></ion-icon>
+          </ion-col>
+          <ion-col *ngIf = "!rec.isAdded" width-10 text-center>Add <ion-icon name="basket"></ion-icon></ion-col>
+          <ion-col *ngIf = "rec.isAdded" width-10 text-center>Added to <ion-icon name="basket"></ion-icon></ion-col>
+          <ion-col   width-10 text-center>
+            <ion-icon *ngIf = "!rec.isAdded" name="add-circle" class="text-2x" tappable (click)="addToBasket(rec.key)" color="secondary"></ion-icon>
+          </ion-col>
+          <ion-item-divider>
+            
+          </ion-item-divider>
+        </ion-row>
+        <h6>Total Amount :{{ totalPrice | currency:'R':true }}</h6>
+      </ion-grid>
+    </div>
+    <div padding class="form-bottom">
+<!--       <span ion-text color="dark" class="bold">{{ adults }} Adults</span> -->
+      <!--booking button-->
+      <button [disabled]="totalPrice ==0 || totalPrice == 0.0" ion-button class="pull-right" color="secondary" tappable (click)="checkout()" >Purchase Now {{ totalPrice | currency:'R':true }}
+      </button>
+      <div class="clear"></div>
+    </div>
+  </div>
+
+ 
+</ion-content>

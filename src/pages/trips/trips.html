@@ -1,0 +1,32 @@
+<!-- -->
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>
+      <span ion-text>Cheff List</span>
+    </ion-title>
+  </ion-navbar>
+ 
+
+</ion-header>
+
+<ion-content padding class="trips detail-bg"> 
+ 
+  <div class="trip card" *ngFor="let cheff of cheffs" tappable (click)="viewDetail(cheff)" margin-bottom>
+      <div class="background border-bottom" >
+          <img src={{cheff.img}}>
+          <div class="background-filter rlt">
+              
+            <div class="align-bottom" padding-left padding-right>
+              
+              <h6 class="pull-left text-white" ion-text>{{ cheff.name }}</h6>
+              <div class="clear"></div>
+            </div>
+          </div>
+        </div>
+    <div class="padding-sm primary-bg">
+        <ion-icon name="time" class="text-white"></ion-icon>
+        <span ion-text class="text-white">{{ cheff.mail }}</span>
+      <span class="pull-right" ion-text color="light"><strong>{{cheff.profile}}</strong> </span>
+    </div>
+  </div>
+</ion-content>

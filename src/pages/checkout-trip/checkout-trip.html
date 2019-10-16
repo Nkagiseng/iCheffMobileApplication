@@ -1,0 +1,100 @@
+<!-- -->
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>Checkout</ion-title>
+  </ion-navbar>
+
+</ion-header>
+   
+ 
+<ion-content padding class="checkout-trip common-bg">
+  <!--trip information--> 
+  <div class="trip-info card round">
+    <div class="trip-image border-bottom" ></div>
+    <ion-grid padding>
+      <ion-row>
+        <ion-col width-66>
+          <h5 ion-text color="primary">Recipes Purchased</h5>
+          <div *ngFor = "let rec of recipes">
+            <div *ngIf="rec.isAdded">
+            <span class="bold">{{ rec.content }}</span>
+            <br/>
+            <span ion-text color="dark">{{ rec.price | currency:'R':true }}</span>
+          </div>
+          </div>
+          <div margin-top>
+            <span ion-text color="dark">{{ date | date: 'EEE, MMM dd' }}</span>
+
+          </div>
+         
+        </ion-col>
+        <ion-col col-4>
+          <span ion-text>Total</span>
+          <h5 ion-text color="primary" class="bold" no-margin>{{ totalPrice | currency:'R':true }}</h5>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+
+
+  <!--payment info-->
+  <h5>Delivery details</h5>
+ 
+  <form #form="ngForm" (ngSubmit)="onSend(form)" class="list-form">
+  <div class="card round" margin-top margin-bottom>
+    <ion-grid padding>
+ 
+      <ion-row>
+        <ion-col>
+          <ion-item no-padding> 
+            <ion-input type="text" name="addrLn1" ngModel placeholder="Address Line 1"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <ion-item no-padding> 
+            <ion-input type="text" name="addrLn2" ngModel placeholder="Address Line 2"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <ion-item no-padding> 
+            <ion-input type="text" name="region" ngModel required placeholder="Region"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <ion-item no-padding>
+            <ion-input placeholder="Code" name="code" ngModel required type="number"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col >
+          <ion-item no-padding>
+            <ion-select name="payoption" ngModel required placeholder="Pay upon recipe delivery?" class="max-width full-width">
+              <ion-option value="Yes">Pay Later</ion-option>
+              <ion-option value="No">Pay Now</ion-option>
+            </ion-select>
+          </ion-item>
+        </ion-col> 
+     
+      </ion-row>
+    </ion-grid>
+  </div>
+
+   <button ion-button class="round" type="submit" color="primary" margin-top full tappable>SEND</button>
+
+
+  </form>
+
+ 
+</ion-content>

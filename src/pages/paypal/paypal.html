@@ -1,0 +1,33 @@
+<ion-header>
+    <ion-navbar color="primary">
+        <ion-title>
+          <span ion-text>Payment</span>
+        </ion-title>
+      </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-card class="welcome-card">
+    <ion-img src="/assets/paypal.jpg"></ion-img>
+    <ion-card-header>
+      <!-- <ion-card-subtitle>Get Started</ion-card-subtitle> -->
+      <ion-card-title>Pay With PayPal</ion-card-title>
+      <ion-row>
+        <ion-col>
+          Total Payment
+        </ion-col>
+        <ion-col>
+          {{currencyIcon}}{{totalPrice}}
+        </ion-col>
+      </ion-row>
+    </ion-card-header>
+    <ion-card-content>
+        <div>
+            <button ion-button (click)="payWithPaypal()">Pay with Paypal</button>
+          </div>
+          <div id="paypal-button"></div>
+    </ion-card-content>
+  </ion-card>
+ 
+</ion-content>
